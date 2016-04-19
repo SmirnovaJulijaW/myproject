@@ -11,7 +11,7 @@ app.set('view engine', 'jade');
 app.use(express.static('node_modules'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.set('views', path.join(__dirname, 'templates'); );
+app.set('views', path.join(__dirname, 'templates'));
 
 app.get('/', function (req, res) {
     var parser = new xml2js.Parser();

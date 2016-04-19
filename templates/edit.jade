@@ -21,18 +21,13 @@ html
                             th Value
                             th Type
                             th Action
-                        tbody
+                        tbody#items
                             each parameter, index in parameters
                                 tr(id='parameter-#{index}')
                                     td.id= parameter.Id
                                     td.name= parameter.Name
                                     td.description= parameter.Description
-                                    td
-                                        if parameter.Type == 'System.Boolean'
-                                            input(type='checkbox', disabled=true, checked=parameter.Value=='True')
-                                            span(class="value" style="display: none")= parameter.Value
-                                        else
-                                            span(class="value")= parameter.Value
+                                    td.value= parameter.Value
                                     td.type= parameter.Type
                                     td
                                         button.edit.btn.btn-default.btn-xs.glyphicon.glyphicon-pencil
@@ -51,7 +46,7 @@ html
                         h4#formHeader.modal-title
                     div.modal-body
                         form
-                            input#edit(type="hidden", value="-1")
+                            input#edit(type="hidden", value="")
                             fieldset.form-group
                                 input#id.form-control(type="text" placeholder="Id")
                             fieldset.form-group
@@ -59,7 +54,9 @@ html
                             fieldset.form-group
                                 input#description.form-control(type="text" placeholder="Description")
                             fieldset.form-group
-                                input#value.form-control(type="text" maxlength="10" placeholder="Value")
+                                input#value-string.form-control(type="text" maxlength="10" placeholder="Value")
+                                input#value-int.form-control(type="number" max="255" min="-255" placeholder="Value")
+                                input#value-boolean(type="checkbox" placeholder="Value")
                             fieldset.form-group
                                 select#type.form-control
                                     option System.String
