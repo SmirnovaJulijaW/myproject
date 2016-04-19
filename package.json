@@ -1,0 +1,16 @@
+{
+  "name": "XMLReader",
+  "version": "1.0.0",
+  "description": "Read XML file and render html form",
+  "main": "app.js",
+  "author": "Smirnove Yulija <usikivorsinki2@gmail.com>",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "jquery": "^2.2.3",
+    "js2xmlparser": "^1.0.0",
+    "xml2js": "^0.4.16"
+  }
+}

@@ -1,0 +1,72 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        link(rel="stylesheet", href='/bootstrap/dist/css/bootstrap-theme.min.css')
+        link(rel="stylesheet", href='/bootstrap/dist/css/bootstrap.min.css')
+        
+        script(type='text/javascript', src='/jquery/dist/jquery.min.js')
+        script(type='text/javascript', src='/bootstrap/dist/js/bootstrap.min.js')
+
+        title Xml configs        
+    body
+        .container-fluid
+            .row
+                .col-md-12
+                    table.table.table-striped.table-hover
+                        thead
+                            th Id
+                            th Name
+                            th Description
+                            th Value
+                            th Type
+                            th Action
+                        tbody
+                            each parameter, index in parameters
+                                tr(id='parameter-#{index}')
+                                    td.id= parameter.Id
+                                    td.name= parameter.Name
+                                    td.description= parameter.Description
+                                    td
+                                        if parameter.Type == 'System.Boolean'
+                                            input(type='checkbox', disabled=true, checked=parameter.Value=='True')
+                                            span(class="value" style="display: none")= parameter.Value
+                                        else
+                                            span(class="value")= parameter.Value
+                                    td.type= parameter.Type
+                                    td
+                                        button.edit.btn.btn-default.btn-xs.glyphicon.glyphicon-pencil
+                                        button.remove.btn.btn-default.btn-xs.glyphicon.glyphicon-remove
+
+                    div
+                        button#append.btn.btn-default.glyphicon.glyphicon-plus(title='Добавить')
+                        button#download.btn.btn-default.glyphicon.glyphicon-download-alt(title='Сохранить')
+
+        div#form.modal.fade(tabindex="-1" role="dialog" aria-labelledby="formHeader")
+            div.modal-dialog(role="document")
+                div.modal-content
+                    div.modal-header
+                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true") &times;
+                        h4#formHeader.modal-title
+                    div.modal-body
+                        form
+                            input#edit(type="hidden", value="-1")
+                            fieldset.form-group
+                                input#id.form-control(type="text" placeholder="Id")
+                            fieldset.form-group
+                                input#name.form-control(type="text" placeholder="Name")
+                            fieldset.form-group
+                                input#description.form-control(type="text" placeholder="Description")
+                            fieldset.form-group
+                                input#value.form-control(type="text" maxlength="10" placeholder="Value")
+                            fieldset.form-group
+                                select#type.form-control
+                                    option System.String
+                                    option System.Int32
+                                    option System.Boolean
+                    div.modal-footer
+                        button.btn.btn-default(type="button" data-dismiss="modal") Закрыть
+                        button#save.btn.btn-primary(type="button") Сохранить
+
+        script(type='text/javascript', src='/table.js')
